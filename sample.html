@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<link rel=stylesheet type="text/css" href="CSSreset.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<script src="https://kit.fontawesome.com/65e4aa0e56.js" crossorigin="anonymous"></script>
+		<script src="jQuery/jQuery.js"></script>
+	<style>
+	@keyframes	flip_card{
+		from{
+		transform:rotateY(0deg);
+		}
+		
+		to{
+		transform:rotateY(360deg);
+		}
+	}
+
+	@keyframes animation_bar{
+		form{
+		width:0px;
+		}
+		
+		to{
+		width:calc(100% - 10px);
+		}
+	}
+	
+	
+	*{
+	text-decoration:none;
+	color:#000;
+	box-sizing:border-box;
+	font-family: 'Noto Sans TC', sans-serif;
+	}
+	
+	body{
+	font-size:16px;
+	}
+	
+	img{
+	width: 100%;
+    height: 100%;
+	object-fit:cover;
+	}
+	
+	.clear-fix:after{
+	content:'';
+	display:table;
+	clear:both;
+	}
+	
+	.head_wrap{
+	background:#222;
+	}
+	
+	.head_bar{
+	max-width:1200px;
+	line-height:2.3em;
+	margin:auto;
+	}
+	
+	
+	.head_logo{
+	float:left;
+	font-size:1.8em;
+	margin-left:10px;
+	}
+
+
+	.login{
+	float:right;
+	padding:0 1em;
+	border-left:1px solid #777;
+	border-right:1px solid #777;
+	font-size:.9em;
+	}
+	
+	.search{
+	float:right;
+	padding:0 10px;
+	}
+	
+	.input_bar{
+	max-width:0px;
+	height:25px;
+	padding:0px;
+	border:none;
+	border-radius:2px;
+	transition:0.3s
+	}
+	
+	#search-ctr{
+	position:absolute;
+	opacity:0
+	}
+	
+	#search-ctr:checked + .input_bar{
+	width:180px;
+	padding:1px 5px;
+	transition:0.3s;
+	}
+	
+	.menu_bar{
+	background:#fff;
+	line-height:3.2em;
+	max-width:1200px;
+	margin:auto;
+	}
+
+	.phone_menu{
+	display:none;
+	}
+	
+	#menu_buttom{
+	position:absolute;
+	opacity:0;
+	}
+	
+
+	#menu_buttom:checked ~.menu_item{
+	display:block;
+	}
+	
+	.menu_item{
+	float:left;
+	}
+	
+	.menu_item li{
+	float:left;
+	padding:0 20px;
+	border-left:1px solid #777;
+	}
+	
+	.menu_item li:last-child{
+	border-right:1px solid #777;
+	}
+	
+	.myfavority{
+	float:right;
+	padding:0 2em;
+	border-left:1px solid #777;
+	border-right:1px solid #777;
+	}
+	
+	.myfavority_count{
+	padding:4px;
+	border-radius:30%;
+	margin:5px;
+	background:#57C5A0;
+	color:#fff;
+	}
+	
+	.mycart{
+	float:right;
+	padding:0px 2em;
+	border-left:1px solid #777;
+	font-size:1.1em;
+	position:relative;
+	}
+	
+	.mycart_count{
+	padding:4px;
+	border-radius:30%;
+	margin:5px;
+	background:#BBB;
+	color:#fff;
+	}
+	
+	.mycart_good{
+	position:absolute;
+	display:none;
+	width:230px;
+	height:300px;
+	background:#fff;
+	left:-1px;
+	border: 2px solid #BEB7A9;
+	overflow-x:hidden;
+	overflow-y:auto;
+	}
+	
+	#mycart_ctr{
+	position:absolute;
+	opacity:0;
+	}
+	
+	#mycart_ctr:checked ~ .mycart_good{
+	display:block;
+	}
+	
+	.good_list{
+	width:224px;
+	height:98px;
+	padding:1px;
+	border-bottom:1px solid #BEB7A9;
+	position:relative;
+	}
+	
+	.good_img{
+	width:95px;
+	height:95px;
+	float:left;
+	}
+	
+	.good_title{
+	float:left;
+	font-size:1em;
+	line-height:1.9em;
+	}
+	
+	.good_price{
+	
+	float:right;
+	font-size:0.8em;
+	line-height: 1.2em;
+	position:absolute;
+	right:15px;
+	bottom:5px;
+	}
+	
+	.banner_wrap{
+	background:#ECEAE6;
+	}
+	
+	.banner_display{
+	max-width:1200px;
+	margin:auto;
+	padding:50px 10px;
+	display:none;
+	}
+	
+	.banner_display:nth-of-type(1){
+	display:block;
+	}
+	
+	.banner_img{
+	float:left;
+	max-width:600px;
+	}
+	
+	.banner_text{
+	float:right;
+	max-width:580px;
+	padding:15px 30px;
+	}
+	
+	.banner_text h3{
+	font-size:3em;
+	font-weight:100;
+	}
+	
+	.banner_text p{
+	font-size:1.3em;
+	}
+	
+	.banner_text ul li{
+	float:left;
+	line-height:2em;
+	font-size:1.6em;
+	background:#fff;
+	padding:0 10px;
+	margin: 5px 10px 0 0;
+	}
+
+	
+	.banner_price{
+	max-width:70px;
+	height:70px;
+	line-height:70px;
+	background:#57C5A0;
+	text-align:center;
+	color:#fff;
+	}
+	
+	.banner_choose_wrap{
+	background:#333;
+	padding:0 0 15px 0;
+	}
+	
+	.banner_choose{
+	max-width:1200px;
+	margin:auto;
+	}
+	
+	.banner_choose ul li{
+	float:left;
+	width:240px;
+	text-align:center;
+	font-size:1.6em;
+	color:#C4C4C4;
+	}
+	
+	.second_title{
+	font-size:0.6em;
+	color:#C4C4C4;
+	}
+	
+	.time_bar{
+	width:calc(100% - 1px);
+	height:15px;
+	background:#000;
+	margin:10px 0 ;
+	position:relative;
+	}
+	
+	.active_bar{
+	width:0px;
+	height:9px;
+	background:#57C5A0;
+	position:absolute;
+	top:3px;
+	left:5px;
+	}
+	
+	.animation_bar{
+	animation:animation_bar 3s;
+	animation-timing-function: linear;
+	}
+	
+	.banner_timer{
+	max-width:1200px;
+	margin:auto;
+	}
+	
+	.banner_timer li{
+	float:left;
+	}
+	
+
+	
+	.point_wrap{
+	background:#222;
+	}
+	
+	.point_list{
+	max-width:1200px;
+	margin:auto;
+	}
+	
+	.point_box{
+	width:380px;
+	height:200px;
+	float:left;
+	margin:30px 10px;;
+	display: flex;
+    justify-content: center;
+    align-items: center;	
+	}
+	
+	.point_box:nth-of-type(1){background:url("http://fakeimg.pl/380x200")}
+	.point_box:nth-of-type(2){background:url("http://fakeimg.pl/380x200")}
+	.point_box:nth-of-type(3){background:url("http://fakeimg.pl/380x200")}
+	
+	.point_box p{
+	font-size:2em;
+	padding:10px 20px;
+	background:rgba(0,0,0,0.7);
+	color:#fff;
+	}
+	
+	.best_sell{
+	background:#ECEAE6
+	}
+	
+	.sell_list{
+	max-width:1200px;
+	margin:auto;
+	}
+	
+	.sell_title{
+	height: 4em;
+	}
+	
+	.sell_title h3{
+	margin-left:10px;
+	font-size:2em;
+	float:left;
+	line-height:2em;
+	}
+	
+	.sellall_botton{
+	float:right;
+	height:30px;
+	line-height: 30px;
+	border:1px solid #BEB7A9;
+	margin-right:10px;
+	position:relative;
+	top:calc(50% - 15px);
+	}
+	
+	.product_box{
+	width:380px;
+	height:300px;
+	float:left;
+	margin:0px 10px 30px 10px;
+	display: flex;
+    justify-content: center;
+    align-items: flex-end;
+	}
+	
+	.product_box:nth-of-type(2){background:url("http://fakeimg.pl/380x300/ffffff")}
+	.product_box:nth-of-type(3){background:url("http://fakeimg.pl/380x300/ffffff")}
+	.product_box:nth-of-type(4){background:url("http://fakeimg.pl/380x300/ffffff")}
+
+	.product_bar {
+	width:100%;
+	border-top:1px solid #888;
+	height:50px;
+	position:relative;
+	}
+	
+	.product_bar:before{
+	content:'Product Name';
+	position:absolute;
+	line-height:50px;
+	font-size:2em;
+	right:calc(50% - 120px);
+	opacity:1;
+	transition:0.3s;
+	z-index:1;
+	}
+	
+	.product_bar li{
+	opacity:0;
+	float:right;
+	line-height:50px;
+	font-size:1.5em;
+	margin:0 15px;
+	transition:0.3s
+	position:relative;
+	z-index:2;
+	}
+	
+
+	.product_bar:hover:before{
+	opacity:0;
+	transition:0.3s;
+	z-index:-1;
+	}
+	
+	.product_bar:hover li{
+	opacity:1;
+	transition:0.3s;
+	}
+	
+	.product_price{
+	width:80px;
+	height:80px;
+	line-height:80px;
+	background:#57C5A0;
+	color:#fff;
+	position:absolute;
+	bottom:0;
+	left:10px;
+	text-align:center;
+	}
+	
+	.column{
+	background:#ECEAE6;
+	}
+	
+	.column_list{
+	max-width:1200px;
+	margin:auto;
+	font-size: 1.1em;
+	}
+		
+	.column_all{
+	background:#DFDBD4;
+	
+	margin:10px;
+	padding:30px 20px;
+	} 	
+	
+	.column_all h4{
+	line-height:2em;
+	}
+		
+	.column01{
+	width:280px;
+	height:400px;
+	}
+	
+	.column02{
+	width:290px;
+	height:190px;
+	}
+	
+	.column03{
+	width:570px;
+	height:190px;
+	}
+	
+	.column04{
+	width:580px;
+	height:190px;
+	}
+	
+	.column05{
+	width:280px;
+	height:190px;
+	}
+	
+	.column01 h4:first-letter,
+	.column02:first-letter,
+	.column03:first-letter,
+	.column04:first-letter,
+	.column05:first-letter{
+	font-size:1.5em;
+	}
+	
+	.column01_content01{
+	width:250px;
+	height:160px;
+	margin: 0 0 55px 0;
+	}
+	
+	.column01_content02{
+	width:250px;
+	height:160px;	
+	}
+	
+	.column01_content01:hover,
+	.column01_content02:hover,
+	.column02:hover,
+	.column03 p:hover,
+	.column04 p:hover,
+	.column05:hover{
+	font-weight:bold;
+	}
+	
+	.column_card01,
+	.column_card02,
+	.column_card03,
+	.column_card04,
+	.column_card05{
+	float:left;
+	width:auto;
+	height:auto;
+	position:relative;
+	}
+	
+	.column_card01:hover .column01,
+	.column_card02:hover .column02,
+	.column_card03:hover .column03,
+	.column_card04:hover .column04,
+	.column_card05:hover .column05{ 
+	animation-name:flip_card;
+	animation-duration:1.25s;
+	}
+	
+	.date_box{
+	width:40px;
+	height:40px;
+	font-size:0.8em;;
+	color:#fff;
+	background:#57C5A0;
+	text-align:center;
+	float:left;
+	}
+	
+	.column03 div{
+	line-height:20px;
+	}
+	
+	.column04 div{
+	line-height:20px;
+	}
+	
+	.footer_wrap{
+	background:#2E2E2E;
+	}
+	
+	.footer_content{
+	max-width:1200px;
+	margin:auto;
+	height:100px;
+	
+	}
+	
+	.copy_right{
+	display:flex;
+	flex-direction:column;
+	float:left;
+	position:relative;
+	top:calc(50% - 19.2px);
+	margin-left:10px;
+	}
+	
+	.copy_right p{
+	color:#8C8C8C;
+	line-height:1.2em;
+	display: inline-flex;
+	}
+	
+	.footer_menu{
+	float:right;
+	color:#8C8C8C;
+	position:relative;
+	top:calc(50% - 8px);
+	margin-right:10px;
+	}
+	
+	.footer_menu li{
+	
+	display: inline-flex;
+	align-items:center;
+	}
+	
+	.footer_menu a{
+	color:#8C8C8C;
+	}
+	
+	
+	@media (min-width:600px)and (max-width: 1024px){
+		.menu_item li{
+		padding: 0 8px;
+		}
+		
+		.banner_display {
+		padding: 15px 10px;
+		}
+		
+		.banner_img {
+		float: left;
+		width: calc(100% - 10px);
+		max-width: none;
+		}
+		
+		.banner_text {
+		float: right;
+		max-width: none;
+		width: calc(100% - 10px);
+		padding: 15px 0px;
+		}
+		
+		.banner_choose li:nth-of-type(4),
+		.banner_choose li:nth-of-type(5){
+		position: relative;
+		left: 15%;
+		}
+		
+		.point_box {
+		width: calc(50vw - 10px);
+		margin: 5px 5px;
+		}
+		
+		.point_list a:nth-of-type(3){
+		position: relative;
+		left: 25%;
+		}
+		
+		.product_box{
+		width: calc(50vw - 10px);
+		margin: 5px 5px;
+		}
+		
+		.product_box:nth-of-type(4){
+		position: relative;
+		left: 25%;
+		}
+		
+		.column_card01{order:1}
+		.column_card02{order:5}
+		.column_card03{order:2}
+		.column_card04{order:4}
+		.column_card05{order:3}
+		
+		.column_all {
+		padding:15px 15px;
+		}
+		
+		.column01{
+		width: calc(100vw - 20px);
+		height:190px;
+		display:flex;
+		}
+		
+		.column01_content01,
+		.column01_content02{
+		width:50vw;
+		height:auto;
+		margin: 0 0 10px 0;
+		}
+		
+		.column02{
+		width:calc((100vw - 40px) / 3 )
+		}
+		.column03{
+		width:calc((100vw - 40px) / 3 * 2 )
+		}
+		.column04{
+		width:calc((100vw - 40px) / 3 * 2 )
+		}
+		.column05{
+		width:calc((100vw - 40px) / 3 )
+		}
+	}
+	
+	@media (max-width: 480px) {
+		body{
+		font-size:10px;
+		}
+		
+		.login{
+		font-size:0.2em;
+		}
+		
+		
+		.input_bar{
+		width:80px;
+		height:18px;
+		}
+		
+		.phone_menu{
+		display:block;
+		margin-left:10px;
+		float:left;
+		}
+		
+		.menu_item{
+		display:none;
+		position:absolute;
+		width:80px;
+		top:54px;
+		left:-2px;
+		background:#fff;
+		border:1px solid #BEB7A9;
+		border-radius:0 5px 5px 0;
+		}
+		.menu_item li,
+		.menu_item li:last-child{
+		border:none
+		}
+		
+		
+		.myfavority ,
+		.mycart{
+		padding:0 1em;
+		}
+		
+		.banner_display{
+		padding: 15px 10px;
+		}
+		
+		.banner_text{
+		padding: 15px 0px;
+		}
+		
+		.banner_price{
+		width: 50px;
+		height: 50px;
+		line-height: 50px;
+		}
+		
+		.banner_choose{
+		width: calc(100% - 20px);
+		}
+		
+		.banner_choose ul li{
+		width: 50%;
+		}
+		
+		.banner_choose li:nth-of-type(5){
+		position: relative;
+		left: calc(50% - 25%);
+		}
+		
+		.point_box{
+		width:calc(100% - 20px);
+		margin: 5px 10px;
+		}
+		
+		.product_box{
+		width:calc(100% - 20px);
+		}
+		
+		.product_price{
+		font-size:2em;
+		}
+		
+		.column_list{
+		display: flex;
+		flex-direction: column;
+		}
+		
+		.column_all{
+		width:calc(100% - 20px);
+		height:auto;
+		font-size: 1.7em;
+		position:relative;
+		}
+		
+		.column01_content01{
+		margin: 0 0 25px 0;
+		}
+		
+		.column01_content01,
+		.column01_content02{
+		height:auto;
+		}
+		
+		.column_card01{order:1}
+		.column_card02{order:2}
+		.column_card03{order:5}
+		.column_card04{order:4}
+		.column_card05{order:3}
+		
+		.copy_right{
+		top:calc(50% - 19.2px);
+		}
+		
+		.footer_menu{
+		display:flex;
+		flex-direction:column;
+		top:calc(50% - 30px);
+		}
+		
+		.footer_menu li {
+		height:10px;
+		}
+		
+		.clean_symble{
+		display:none;
+		}
+		
+		.mycart_good{
+		left:auto;
+		right: -5.9em;
+		}
+	}
+	
+	</style>
+		
+	</head>
+	
+	<body>
+		<div class="head_wrap">
+			
+			<div class="head_bar clear-fix">
+				<div class="head_logo">
+				<a href="#" style="color:#57C5A0;">FOOSESHOES</a>
+				</div>
+
+				<div class="login">
+				<a href="#" style="color:#666;">LOGIN or REGISTER</a>
+				</div>
+		
+				<div class="search">
+					<input type="checkbox" id="search-ctr" name=""></input>
+					<input class="input_bar">
+					</input>
+					<label for="search-ctr">
+						<i class="fas fa-search" style="color:#666; font-size:.9em;"></i>
+					</label>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="menu_bar clear-fix">
+			<input type="checkbox" id="menu_buttom" name="">
+			<div class="phone_menu">
+				<label for="menu_buttom"><i class="fas fa-bars"></i></label>
+				
+			</div>
+			<div class="menu_item clear-fix">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Products</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Pages</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+			
+			<div class="myfavority">
+				<i class="fas fa-star"></i>
+				<span class="myfavority_count">30</span>
+			</div>
+			
+			<div class="mycart">
+				<input type="checkbox" id="mycart_ctr" name="">
+				<label for="mycart_ctr"><i class="fas fa-shopping-cart"></i></label>
+				<span class="mycart_count">0</span>
+				<div class="mycart_good clear-fix">
+					<ul>
+						<li class="good_list clear-fix">
+							<div class="good_img">
+								<img src="http://fakeimg.pl/100x100"></img>
+							</div>
+							<div class="good_title">
+								<p>Product Name</p>
+							</div>
+							<div class="good_price">
+							<p>$145.99</p>
+							</div>
+						</li>
+						
+						<li class="good_list clear-fix">
+							<div class="good_img">
+								<img src="http://fakeimg.pl/100x100"></img>
+							</div>
+							<div class="good_title">
+								<p>Product Name</p>
+							</div>
+							<div class="good_price">
+							<p>$145.99</p>
+							</div>
+						</li>
+						<li class="good_list clear-fix">
+							<div class="good_img">
+								<img src="http://fakeimg.pl/100x100"></img>
+							</div>
+							<div class="good_title">
+								<p>Product Name</p>
+							</div>
+							<div class="good_price">
+							<p>$145.99</p>
+							</div>
+						</li>
+						<li class="good_list clear-fix">
+							<div class="good_img">
+								<img src="http://fakeimg.pl/100x100"></img>
+							</div>
+							<div class="good_title">
+								<p>Product Name</p>
+							</div>
+							<div class="good_price">
+							<p>$145.99</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="banner_wrap clear-fix">
+		
+			<div class="banner_display clear-fix">
+				<div class="banner_img">
+					<img src="http://fakeimg.pl/600x300"></img>
+				</div>
+				
+				<div class="banner_text">
+					<div class="banner_price">$145.99</div>
+					<h3>1What is Lorem Ipsum?</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type sp</p>					
+					<ul>
+						<li><a href="#"><i class="fas fa-eye" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-star" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-share-square" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-cart-arrow-down" style="color:#57C5A0"></i></a></li>
+					</ul>
+				</div>				
+			</div>			
+			<div class="banner_display clear-fix">
+				<div class="banner_img">
+					<img src="http://fakeimg.pl/600x300"></img>
+				</div>
+				
+				<div class="banner_text">
+					<div class="banner_price">$145.99</div>
+					<h3>2What is Lorem Ipsum?</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type sp</p>					
+					<ul>
+						<li><a href="#"><i class="fas fa-eye" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-star" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-share-square" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-cart-arrow-down" style="color:#57C5A0"></i></a></li>
+					</ul>
+				</div>				
+			</div>
+			<div class="banner_display clear-fix">
+				<div class="banner_img">
+					<img src="http://fakeimg.pl/600x300"></img>
+				</div>
+				
+				<div class="banner_text">
+					<div class="banner_price">$145.99</div>
+					<h3>3What is Lorem Ipsum?</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type sp</p>					
+					<ul>
+						<li><a href="#"><i class="fas fa-eye" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-star" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-share-square" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-cart-arrow-down" style="color:#57C5A0"></i></a></li>
+					</ul>
+				</div>				
+			</div>
+			<div class="banner_display clear-fix">
+				<div class="banner_img">
+					<img src="http://fakeimg.pl/600x300"></img>
+				</div>
+				
+				<div class="banner_text">
+					<div class="banner_price">$145.99</div>
+					<h3>4What is Lorem Ipsum?</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type sp</p>					
+					<ul>
+						<li><a href="#"><i class="fas fa-eye" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-star" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-share-square" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-cart-arrow-down" style="color:#57C5A0"></i></a></li>
+					</ul>
+				</div>				
+			</div>
+			<div class="banner_display clear-fix">
+				<div class="banner_img">
+					<img src="http://fakeimg.pl/600x300"></img>
+				</div>
+				
+				<div class="banner_text">
+					<div class="banner_price">$145.99</div>
+					<h3>5What is Lorem Ipsum?</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type sp</p>					
+					<ul>
+						<li><a href="#"><i class="fas fa-eye" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-star" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-share-square" style="color:#959595"></i></a></li>
+						<li><a href="#"><i class="fas fa-cart-arrow-down" style="color:#57C5A0"></i></a></li>
+					</ul>
+				</div>				
+			</div>
+			
+			
+	
+		</div>
+		
+		
+		<div class="banner_choose_wrap">				
+			<div class="banner_choose clear-fix">
+				<ul>
+					<li class="choose_button">
+						<div class="time_bar">
+							<div class="active_bar">
+							</div>
+						</div>Pink Shoes<br><span class="second_title">Now af $145.99M</span>
+					</li>
+					
+					<li class="choose_button">
+						<div class="time_bar">
+							<div class="active_bar"></div>
+							</div>Anna Field<br><span class="second_title">Limited Edition</span>
+					</li>
+					
+					<li class="choose_button">
+						<div class="time_bar">
+							<div class="active_bar"></div>
+							</div>Prada<br><span class="second_title">Summer is coming</span>
+					</li>
+					
+					<li class="choose_button">
+						<div class="time_bar">
+							<div class="active_bar"></div>
+							</div>Casadei<br><span class="second_title">All Colors avaiable</span>
+					</li>
+					
+					<li class="choose_button">
+						<div class="time_bar">
+							<div class="active_bar"></div>
+							</div>Mellow Yellow<br><span class="second_title">Free delivery</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="point_wrap">
+			<div class="point_list clear-fix">
+				<a href="#"><div class="point_box"><p>ON SALE</p></div></a>
+				<a href="#"><div class="point_box"><p>SPECIAL OFFER</p></div></a>
+				<a href="#"><div class="point_box"><p>MUST HAVE</p></div></a>
+			</div>
+		</div>
+	
+		<div class="best_sell">
+			<div class="sell_list clear-fix">
+				<div class="sell_title clear-fix">
+					<h3>Best sellers of the month</h3>
+					<div class="sellall_botton">
+						<a href="#" style="color:#BEB7A9" >SHOW ALL</a>
+					</div>
+				</div>
+				
+				<div class="product_box">
+					<div class="product_bar clear-fix">
+						<div class="product_price">$145.99</div>
+						<ul>
+							<li class="icon_popup"><i class="fas fa-cart-arrow-down" style="color:#57C5A0;"></i></li>
+							<li class="icon_popup"><i class="fas fa-share-square"  style="color:#C4C4C4;"></i></li>
+							<li class="icon_popup"><i class="fas fa-star"  style="color:#C4C4C4;"></i></li>
+							<li class="icon_popup"><i class="fas fa-eye"  style="color:#C4C4C4;"></i></li>
+						</ul>
+					</div>
+				</div>
+				<div class="product_box">
+					<div class="product_bar clear-fix">
+						<div class="product_price">$145.99</div>
+						<ul>
+							<li class="icon_popup"><i class="fas fa-cart-arrow-down" style="color:#57C5A0;"></i></li>
+							<li class="icon_popup"><i class="fas fa-share-square"  style="color:#C4C4C4;"></i></li>
+							<li class="icon_popup"><i class="fas fa-star"  style="color:#C4C4C4;"></i></li>
+							<li class="icon_popup"><i class="fas fa-eye"  style="color:#C4C4C4;"></i></li>
+						</ul>
+					</div>
+				</div>
+				<div class="product_box">
+					<div class="product_bar clear-fix">
+						<div class="product_price">$145.99</div>
+						<ul>
+							<li class="icon_popup"><i class="fas fa-cart-arrow-down" style="color:#57C5A0;"></i></li>
+							<li class="icon_popup"><i class="fas fa-share-square"  style="color:#C4C4C4;"></i></li>
+							<li class="icon_popup"><i class="fas fa-star"  style="color:#C4C4C4;"></i></li>
+							<li class="icon_popup"><i class="fas fa-eye"  style="color:#C4C4C4;"></i></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="column">		
+			<div class="column_list  clear-fix">
+			<hr style="margin:0; width:calc(100% - 20px) ;margin: auto">
+			<div class="column_card01">	
+				<div class="column_all column01">
+					<div class="column01_content01">
+						<h4>1.Lorem Ipsum</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nunc sem, aliquam vulputate laoreet sed, vulputate eu mauris. Aenean semper </p>
+					</div>
+					<div class="column01_content02">
+						<h4>Lorem Ipsum</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nunc sem, aliquam vulputate laoreet sed, vulputate eu mauris. Aenean semper </p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="column_card02">	
+				<div class="column_all column02">
+					<h4>2.Lorem Ipsum</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nunc sem, aliquam vulputate laoreet sed, vulputate eu mauris. Aenean semper </p>
+					
+				</div>
+			</div>		
+				
+			<div class="column_card03">		
+				<div class="column_all column03">
+					<h4>3.Lorem Ipsum</h4>
+					<div style="margin:10px 0">
+						<div class="date_box">ARP<br><span style="font-size:1.4em; color:#fff;">01</spna></div>
+						<p>m ipsum dolor sit amet, consectetur adipiscing elit.<br> Duis nunc sem, aliqu</p>
+					</div>
+					
+					<div>
+						<div class="date_box">ARP<br><span style="font-size:1.4em; color:#fff">01</spna></div>
+						<p>m ipsum dolor sit amet, consectetur adipiscing elit.<br> Duis nunc sem, aliqu</p>
+					</div>
+				</div>
+			</div>	
+
+			<div class="column_card04">	
+				<div class="column_all column04">
+					<h4>4.Lorem Ipsum</h4>
+					<div style="margin:10px 0">
+						<div class="date_box">ARP<br><span style="font-size:1.4em; color:#fff;">01</spna></div>
+						<p>m ipsum dolor sit amet, consectetur adipiscing elit.<br> Duis nunc sem, aliqu</p>
+					</div>
+					
+					<div>
+						<div class="date_box">ARP<br><span style="font-size:1.4em; color:#fff">01</spna></div>
+						<p>m ipsum dolor sit amet, consectetur adipiscing elit.<br> Duis nunc sem, aliqu</p>
+					</div>
+				</div>
+			</div>	
+			
+			<div class="column_card05">	
+				<div class="column_all column05">
+					<h4>5.Lorem Ipsum</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nunc sem, aliquam vulputate laoreet sed, vulputate eu mauris. Aenean semper </p>
+					
+				</div>
+			</div>
+	
+		</div>
+		
+		<div class="footer_wrap">
+			<div class="footer_content clear-fix">
+				<div class="copy_right">
+					<p>Copyright © Fooseshoes 2013.</p>
+					<p>Designed by EnzoLiVolti.</p>
+				</div>
+				
+				<ul class="footer_menu">
+					<li><a href="#">Home&nbsp </a></li><span class="clean_symble">/</span>
+					<li><a href="#">Support&nbsp </a></li><span class="clean_symble">/</span>
+					<li><a href="#">Terms and Conditions&nbsp </a></li><span class="clean_symble">/</span>
+					<li><a href="#">Faqs&nbsp </a></li><span class="clean_symble">/</span>
+					<li><a href="#">Contact us&nbsp </a></li><span class="clean_symble">
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script>
+	
+	$(".icon_popup").click(function(){
+		alert ("icosuccessful");
+	});
+	
+	var newWidth = $('.time_bar').width() - 10;
+	$(".active_bar").eq(0).removeClass("animation_bar").addClass("animation_bar")
+	$(".choose_button").eq(0).css("font-weight", "bold");
+	$(".choose_button").eq(0).css("color","#fff");
+	
+		
+	var N = 0;
+	var Timer;
+	
+	function active(){
+		var Timer = setInterval (function (){		
+			$(".banner_display").eq(N).hide();
+			$(".active_bar").eq(N).removeClass("animation_bar");
+			$(".choose_button").eq(N).css("font-weight", "100");
+			$(".choose_button").eq(N).css("color","#C4C4C4");
+			
+			N++	
+			$(".banner_display").eq(N).show();
+			$(".active_bar").eq(N).addClass("animation_bar");
+			$(".choose_button").eq(N).css("font-weight", "bold");
+			$(".choose_button").eq(N).css("color","#fff");
+			
+			if(N >= 4){N=-1}
+		},3000)
+		return Timer;
+	}
+	
+	Timer = active();
+	
+	$('.choose_button').on("click",function (){
+		var buttonIndex = $(this).index();					
+		$(".banner_display").hide();
+		$(".banner_display").eq(buttonIndex).show();
+	
+	
+		$(".active_bar").removeClass("animation_bar");
+		$(".active_bar").eq(buttonIndex).addClass("animation_bar");
+		
+		$(".choose_button").css("font-weight", "100");
+		$(".choose_button").eq(buttonIndex).css("font-weight", "bold");
+		$(".choose_button").css("color","#fff");
+		$(".choose_button").eq(buttonIndex).css("color","#C4C4C4");
+		
+		clearInterval(Timer);
+	
+		N = buttonIndex;
+		if(N >= 4){N=-1}	
+		Timer = active();
+	})
+	
+	</script>
+	
+</html>
